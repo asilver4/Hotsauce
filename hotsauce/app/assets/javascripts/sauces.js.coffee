@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('#sauces').imagesLoaded ->
-    $('#sauces').masonry
-      itemSelector: '.box'
-      isFitWidth: true
+	$('#sauces').imagesLoaded ->
+		$('#sauces').masonry
+			itemSelector: '.box'
+			isFitWidth: true
+	$grid.masonry('layout');
