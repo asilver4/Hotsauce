@@ -6,7 +6,9 @@ class SaucesController < ApplicationController
   # GET /sauces
   # GET /sauces.json
   def index
-    @sauces = Sauce.all
+    @sauces = Sauce.all.joins(:user)
+    .order("((users.sweet - sauces.sweet)*(users.sweet - sauces.sweet))+((users.smoke - sauces.smoke)*(users.smoke - sauces.smoke))+((users.fruit - sauces.fruit)*(users.fruit - sauces.fruit))+((users.garlic - sauces.garlic)*(users.garlic - sauces.garlic))+((users.vinegar - sauces.vinegar)*(users.vinegar - sauces.vinegar))+((users.salt - sauces.salt)*(users.salt - sauces.salt))")
+    .where("(users.vegan = sauces.vegan) and (users.no_alcohol = sauces.no_alcohol) and (users.no_gluten = sauces.no_gluten) and( (users.mild = sauces.mild) or (users.medium = sauces.medium) or (users.hot = sauces.hot) or (users.hotter = sauces.hotter) or (users.hottest = sauces.hottest) or (users.superhot = sauces.superhot) )")
   end
 
   # GET /sauces/1
@@ -77,6 +79,6 @@ class SaucesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sauce_params
-      params.require(:sauce).permit(:image, :description)
+      params.require(:sauce).permit(:image, :description,:mild, :medium, :hot, :hotter, :hottest, :superhot, :sweet, :smoke, :fruit, :vinegar, :garlic, :salt, :vegan, :no_gluten, :no_alcohol)
     end
 end
