@@ -11,8 +11,8 @@ class SaucesController < ApplicationController
      else 
       @sauces = Sauce.all.joins(:user)
       .vegan_user(current_user)
-      .vegan_user(current_user)
-      .vegan_user(current_user)
+      .gluten_user(current_user)
+      .alcohol_user(current_user)
       .order("((users.sweet - sauces.sweet)*(users.sweet - sauces.sweet))+((users.smoke - sauces.smoke)*(users.smoke - sauces.smoke))+((users.fruit - sauces.fruit)*(users.fruit - sauces.fruit))+((users.garlic - sauces.garlic)*(users.garlic - sauces.garlic))+((users.vinegar - sauces.vinegar)*(users.vinegar - sauces.vinegar))+((users.salt - sauces.salt)*(users.salt - sauces.salt))")
       #.where("(users.vegan = sauces.vegan) and (users.no_alcohol = sauces.no_alcohol) and (users.no_gluten = sauces.no_gluten) and( (users.mild = sauces.mild) or (users.medium = sauces.medium) or (users.hot = sauces.hot) or (users.hotter = sauces.hotter) or (users.hottest = sauces.hottest) or (users.superhot = sauces.superhot) )")
     end

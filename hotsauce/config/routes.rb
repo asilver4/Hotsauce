@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :sauces
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'}
   root "sauces#index"
   get "about" => "pages#about"
   # The priority is based upon order of creation: first created -> highest priority.
